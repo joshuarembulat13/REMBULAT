@@ -3,15 +3,18 @@
 
 public enum Hello
 {
-    Instructor, Prof, AsstProf
+    Instructor, Professor, AssistantProfessor, AssociateProfessor
 }
 
 public class Instructor
 {
-    public string instructorID { get; set; }
 
-    public string instructorName { get; set; }
-    public string instructorEmail { get; set; }
+    public int id { get; set; }
+
+    public string firstName { get; set; }
+    public string lastName { get; set; }
+
+    public bool isTenured { get; set; }
     public DateTime instructorDateHired { get; set; }
     public Hello instructorRank { get; set; }
 

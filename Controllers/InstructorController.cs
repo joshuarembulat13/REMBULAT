@@ -10,42 +10,59 @@ namespace RembulatITELEC1C.Controllers;
 public class InstructorController : Controller
 {
 
-    private readonly ILogger<InstructorController> _logger;
+  private readonly ILogger<InstructorController> _logger;
 
-    public InstructorController(ILogger<InstructorController> logger)
-    {
-        _logger = logger;
-    }
-    public IActionResult Index()
-    {
+  public InstructorController(ILogger<InstructorController> logger)
+  {
+    _logger = logger;
+  }
 
-
-        List<Instructor> instructorsList = new List<Instructor>() {
+  List<Instructor> instructorsList = new List<Instructor>() {
                     new Instructor(){
-                        instructorID = "1",
-                        instructorEmail=  "montanogab@gmail.caom",
-                        instructorName = "Gab Montano",
+                        id = 1,
+                        firstName=  "Ronina",
+                        lastName= "Tayuan",
+                        isTenured =true,
                         instructorDateHired = DateTime.Now,
-                        instructorRank = Hello.Instructor,
+                        instructorRank = Hello.AssistantProfessor,
                       },
                     new Instructor(){
-                        instructorID = "2",
-                        instructorEmail=  "miaelazaur@gmail.com",
-                        instructorName = "Mia Elazaur",
+                        id = 2,
+                        firstName = "Maricel",
+                        lastName = "Balais",
+                        isTenured = false,
                         instructorDateHired = DateTime.Now,
-                        instructorRank = Hello.Prof
+                        instructorRank = Hello.AssociateProfessor
                       },
                         new Instructor(){
-                        instructorID = "3",
-                        instructorEmail=  "Lintagleo@gmail.com",
-                        instructorName = "Leo Lintag",
+                        id = 3,
+                        firstName ="Jerralyn",
+                        lastName ="Padua",
+                        isTenured = true,
                         instructorDateHired = DateTime.Now,
-                        instructorRank = Hello.AsstProf
+                        instructorRank = Hello.AssociateProfessor
                       },
 
                 };
 
+  public IActionResult Index()
+  {
 
-        return View(instructorsList);
+
+
+
+    return View(instructorsList);
+  }
+  public IActionResult ShowDetails(int id)
+  {
+
+
+    Instructor instructors = instructorsList.FirstOrDefault(t => t.id == id);
+
+    if (instructors != null)
+    {
+      return View(instructors);
     }
+    return NotFound();
+  }
 }

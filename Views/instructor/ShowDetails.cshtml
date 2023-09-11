@@ -1,0 +1,45 @@
+@model Instructor;
+
+
+<h2>Instructor Details</h2>
+
+
+<table class="table">
+    <tr>
+        <th>Instructor ID</th>
+        <td>@Model.id</td>
+    </tr>
+    <tr>
+        <th>Firstname</th>
+        <td>@Model.firstName</td>
+    </tr>
+    <tr>
+        <th>Lastname</th>
+        <td>@Model.lastName</td>
+    </tr>
+    <tr>
+        <th>Instructor Rank</th>
+        <td>
+            @Model.instructorRank
+        </td>
+    </tr>
+    <tr>
+        <th>Instructor Status</th>
+        <td>@{
+
+                        if(@Model.isTenured == true){
+                           <span>Full-Time</span>
+                        } else {
+                           
+                           <span>Part-Time</span>
+                        }
+}
+                  </td>
+    </tr>
+    <tr>
+        <th>Instructor Date Hired</th>
+        <td>
+            @Model.instructorDateHired
+        </td>
+    </tr>
+</table>
