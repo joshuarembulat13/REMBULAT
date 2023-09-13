@@ -8,7 +8,7 @@ public enum Course
 }
 public class Student
 {
-    public string studentID { get; set; }
+    public int studentID { get; set; }
     public string studentName { get; set; }
     public DateTime DateEndrolled { get; set; }
 
@@ -17,6 +17,6 @@ public class Student
 
     public string studentEmail { get; set; }
 
-    
+
 
 }

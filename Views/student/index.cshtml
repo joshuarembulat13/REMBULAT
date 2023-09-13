@@ -1,28 +1,32 @@
 <h2>Student List</h2>
 
-<table border="1px">
+
+<table class="table">
+   <thead>
+      <tr>
+         <td>Student ID</td>
+         <td>Name</td>
+         <td>Email</td>
+         <td>Course</td>
+         <td>Enrolled</td>
+         <td>Details</td>
+      </tr>
+   </thead>
    <tbody border="1px">
-      <tr>
-         <th>Student ID:</th>
-         <td>@ViewBag.Student</td>
-      </tr>
-      <tr>
-         <th>Name:</th>
-         <td>@ViewBag.studentName</td>
-      </tr>
-      <tr>
-         <th>Email:</th>
-         <td>@ViewBag.studentEmail</td>
-      </tr>
-      <tr>
-         <th>Course:</th>
-         <td>@ViewBag.studentCourse</td>
-      </tr>
-      <tr>
-         <th>Date Enrolled:</th>
-         <td>@ViewBag.StudentDateEnrolled</td>
-      </tr>
+      @{
+         foreach (var student in Model)
+         {
+            <tr>
+               <td>@student.studentID</td>
+               <td>@student.studentName</td>
+               <td>@student.studentEmail</td>
+               <td>@student.studentCourse</td>
+               <td>@student.DateEndrolled</td>
+               <td>
+                  <a asp-action="ShowDetails" asp-route-id="@student.studentID">Show Details</a>
+               </td>
+            </tr>
+         }
+      }
    </tbody>
 </table>
-
-
