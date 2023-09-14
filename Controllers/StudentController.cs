@@ -94,12 +94,24 @@ public class StudentController : Controller
     }
     public IActionResult ShowDetails(int id)
     {
-        Student student = StudentsList.FirstOrDefault(t => t.studentID == id);
+        Student? student = StudentsList.FirstOrDefault(t => t.studentID == id);
 
         if (student != null)
         {
             return View(student);
         }
         return NotFound();
+    }
+    [HttpGet]
+    public IActionResult addstudent()
+    {
+        return View();
+    }
+    [HttpPost]
+    public IActionResult addstudent(Student newstudent)
+    {
+
+        StudentsList.Add(newstudent);
+        return View("Index", StudentsList);
     }
 }

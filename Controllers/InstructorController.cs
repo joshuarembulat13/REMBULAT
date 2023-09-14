@@ -47,12 +47,10 @@ public class InstructorController : Controller
 
   public IActionResult Index()
   {
-
-
-
-
     return View(instructorsList);
   }
+
+
   public IActionResult ShowDetails(int id)
   {
 
@@ -64,5 +62,18 @@ public class InstructorController : Controller
       return View(instructors);
     }
     return NotFound();
+  }
+
+  [HttpGet]
+  public IActionResult addinstructor()
+  {
+    return View();
+  }
+
+  [HttpPost]
+  public IActionResult addinstructor(Instructor newinstructor)
+  {
+    instructorsList.Add(newinstructor);
+    return View("Index", instructorsList);
   }
 }

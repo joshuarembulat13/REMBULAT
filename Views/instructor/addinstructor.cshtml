@@ -1,0 +1,39 @@
+@model Instructor;
+
+
+<h2>Add Instructor</h2>
+
+
+<form method="post" asp-action="addinstructor" asp-controller="Instructor" class='p-2 row gx-3 gy-2 align-items-center'>
+    <div class="form-group">
+        <label asp-for="id">Instructor ID</label>
+        <input class="form-control" asp-for="id" />
+    </div>
+    <div class="form-group">
+        <label asp-for="firstName">Enter Firstname</label>
+        <input class="form-control" asp-for="firstName" />
+    </div>
+    <div class="form-group">
+        <label asp-for="lastName">Enter Email</label>
+        <input class="form-control" asp-for="lastName" />
+    </div>
+    <div class="form-group">
+        <label class="input-group-text" asp-for="isTenured">Instructor Tenured</label>
+        <input asp-for="isTenured">
+
+    </div>
+    <div class="form-group">
+        <label class="input-group-text" asp-for="instructorRank">Instructor Rank</label>
+        <select class="form-control" asp-items="@Html.GetEnumSelectList(typeof(Hello))" asp-for="instructorRank">
+            
+        </select>
+
+    </div>
+    <div class=" form-group">
+        <label asp-for="instructorDateHired">Date Enrolled</label>
+        <input asp-for="instructorDateHired" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary p-20">Submit</button>
+
+</form>

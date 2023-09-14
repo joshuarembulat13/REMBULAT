@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\ramin\\Desktop\\IT-ELEC\\projects\\RembulatITELEC1C\\RembulatITELEC1C.csproj": {}
+    "C:\\Users\\ramin\\Desktop\\IT-ELEC\\projects\\RembulatITELEC1C\\RembulatITELEC1C.csproj": {}
   },
   "projects": {
-    "c:\\Users\\ramin\\Desktop\\IT-ELEC\\projects\\RembulatITELEC1C\\RembulatITELEC1C.csproj": {
+    "C:\\Users\\ramin\\Desktop\\IT-ELEC\\projects\\RembulatITELEC1C\\RembulatITELEC1C.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\ramin\\Desktop\\IT-ELEC\\projects\\RembulatITELEC1C\\RembulatITELEC1C.csproj",
+        "projectUniqueName": "C:\\Users\\ramin\\Desktop\\IT-ELEC\\projects\\RembulatITELEC1C\\RembulatITELEC1C.csproj",
         "projectName": "RembulatITELEC1C",
-        "projectPath": "c:\\Users\\ramin\\Desktop\\IT-ELEC\\projects\\RembulatITELEC1C\\RembulatITELEC1C.csproj",
+        "projectPath": "C:\\Users\\ramin\\Desktop\\IT-ELEC\\projects\\RembulatITELEC1C\\RembulatITELEC1C.csproj",
         "packagesPath": "C:\\Users\\ramin\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\ramin\\Desktop\\IT-ELEC\\projects\\RembulatITELEC1C\\obj\\",
+        "outputPath": "C:\\Users\\ramin\\Desktop\\IT-ELEC\\projects\\RembulatITELEC1C\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ramin\\AppData\\Roaming\\NuGet\\NuGet.Config",
