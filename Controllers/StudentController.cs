@@ -114,4 +114,29 @@ public class StudentController : Controller
         StudentsList.Add(newstudent);
         return View("Index", StudentsList);
     }
+    public IActionResult updatestudent(int id)
+    {
+
+        Student? student = StudentsList.FirstOrDefault(t => t.studentID == id);
+
+        if (student != null)
+        {
+            return View(student);
+        }
+        return NotFound();
+    }
+    [HttpPost]
+    public IActionResult updatestudent(Student updatestudent)
+    {
+        Student? student = StudentsList.FirstOrDefault(t => t.studentID == updatestudent.studentID);
+
+        if (student != null)
+        {
+            student.studentName = updatestudent.studentName;
+            student.studentEmail = updatestudent.studentEmail;
+            student.studentCourse = updatestudent.studentCourse;
+        };
+
+        return View("Index", StudentsList);
+    }
 }

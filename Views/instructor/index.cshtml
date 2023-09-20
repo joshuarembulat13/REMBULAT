@@ -36,7 +36,8 @@
                   <td>@element.instructorRank</td>
                   <td>@element.instructorDateHired</td>
                   <td>
-                     <a asp-action="ShowDetails" asp-route-id="@element.id">Show Details</a>
+                     <a asp-action="ShowDetails" asp-route-id="@element.id" class="btn btn-primary">Show Details</a>
+                      <a asp-action="updateinstructor" asp-route-id="@element.id" class="btn btn-primary">Update</a>
                   </td>
                </tr>
             }

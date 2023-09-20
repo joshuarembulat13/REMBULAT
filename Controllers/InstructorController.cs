@@ -55,7 +55,7 @@ public class InstructorController : Controller
   {
 
 
-    Instructor instructors = instructorsList.FirstOrDefault(t => t.id == id);
+    Instructor? instructors = instructorsList.FirstOrDefault(t => t.id == id);
 
     if (instructors != null)
     {
@@ -76,4 +76,30 @@ public class InstructorController : Controller
     instructorsList.Add(newinstructor);
     return View("Index", instructorsList);
   }
+  public IActionResult updateinstructor(int id)
+  {
+
+    Instructor? student = instructorsList.FirstOrDefault(t => t.id == id);
+
+    if (student != null)
+    {
+      return View(student);
+    }
+    return NotFound();
+  }
+  [HttpPost]
+  public IActionResult updateinstructor(Instructor updateinstructor)
+  {
+    Instructor? instructor = instructorsList.FirstOrDefault(t => t.id == updateinstructor.id);
+
+    if (instructor != null)
+    {
+      instructor.firstName = updateinstructor.firstName;
+      instructor.lastName = updateinstructor.lastName;
+
+    };
+
+    return View("Index", instructorsList);
+  }
+
 }

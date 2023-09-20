@@ -36,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcaW5zdHJ1Y3RvclxTaG93RGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ramin/Desktop/IT-ELEC/projects/RembulatITELEC1C/Views/instructor/updateinstructor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcaW5zdHJ1Y3Rvclx1cGRhdGVpbnN0cnVjdG9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ramin/Desktop/IT-ELEC/projects/RembulatITELEC1C/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -54,6 +58,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ramin/Desktop/IT-ELEC/projects/RembulatITELEC1C/Views/student/ShowDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3Ncc3R1ZGVudFxTaG93RGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ramin/Desktop/IT-ELEC/projects/RembulatITELEC1C/Views/student/updatestudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3Ncc3R1ZGVudFx1cGRhdGVzdHVkZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ramin/Desktop/IT-ELEC/projects/RembulatITELEC1C/Views/_ViewImports.cshtml]

@@ -30,7 +30,8 @@
                <td>@student.studentCourse</td>
                <td>@student.DateEndrolled</td>
                <td>
-                  <a asp-action="ShowDetails" asp-route-id="@student.studentID">Show Details</a>
+                  <a asp-action="ShowDetails" asp-route-id="@student.studentID" class="btn btn-primary">Show Details</a>
+                  <a asp-action="updatestudent" asp-route-id="@student.studentID" class="btn btn-primary">Update</a>
                </td>
             </tr>
          }
