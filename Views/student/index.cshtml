@@ -16,7 +16,7 @@
          <td>Email</td>
          <td>Course</td>
          <td>Enrolled</td>
-         <td>Details</td>
+         <td>Actions</td>
       </tr>
    </thead>
    <tbody border="1px">
@@ -32,6 +32,7 @@
                <td>
                   <a asp-action="ShowDetails" asp-route-id="@student.studentID" class="btn btn-primary">Show Details</a>
                   <a asp-action="updatestudent" asp-route-id="@student.studentID" class="btn btn-primary">Update</a>
+                  <a asp-action="deletestudent" asp-route-id="@student.studentID" class="btn btn-secondary">Delete</a>
                </td>
             </tr>
          }

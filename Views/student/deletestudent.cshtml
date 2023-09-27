@@ -1,0 +1,15 @@
+@model Student;
+
+
+
+<h2>Delete Student</h2>
+
+
+
+<form method="post" asp-action="deletestudent" asp-controller="Student">
+
+    <h2>Are you sure you want to delete this user?</h2>
+    <input class="form-control" asp-for="studentID" />
+    <button type="submit" class="btn btn-primary p-20">Submit</button>
+
+</form>

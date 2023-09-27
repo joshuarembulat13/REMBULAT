@@ -139,4 +139,29 @@ public class StudentController : Controller
 
         return View("Index", StudentsList);
     }
+    [HttpGet]
+    public IActionResult deletestudent(int studentID)
+    {
+        Student? student = StudentsList.FirstOrDefault(t => t.studentID == studentID);
+
+        if (student != null)
+        {
+            return View(student);
+        }
+        return NotFound();
+
+    }
+
+    [HttpPost]
+    public IActionResult deletestudent(Student currentStudent)
+    {
+        Student? student = StudentsList.FirstOrDefault(t => t.studentID == currentStudent.studentID);
+
+        if (student != null)
+
+            StudentsList.Remove(student);
+
+
+        return View("Index", StudentsList);
+    }
 }
