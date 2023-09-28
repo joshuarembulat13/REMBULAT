@@ -21,7 +21,7 @@
     <div class="form-group">
 
         <label class="input-group-text" asp-for="studentCourse">Enter Course</label>
-        <input class="form-control" asp-items="@Html.GetEnumSelectList(typeof(Course))" asp-for="studentCourse" />
+        <select class="form-control" asp-items="@Html.GetEnumSelectList(typeof(Course))" asp-for="studentCourse"></select>
 
     </div>
     <div class=" form-group">

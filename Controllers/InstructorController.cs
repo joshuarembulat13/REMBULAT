@@ -10,44 +10,16 @@ namespace RembulatITELEC1C.Controllers;
 public class InstructorController : Controller
 {
 
-  private readonly ILogger<InstructorController> _logger;
+  private readonly DataInterfaceService _dummyData;
 
-  public InstructorController(ILogger<InstructorController> logger)
+  public InstructorController(DataInterfaceService dummayData)
   {
-    _logger = logger;
+    _dummyData = dummayData;
   }
-
-  List<Instructor> instructorsList = new List<Instructor>() {
-                    new Instructor(){
-                        id = 1,
-                        firstName=  "Ronina",
-                        lastName= "Tayuan",
-                        isTenured =true,
-                        instructorDateHired = DateTime.Now,
-                        instructorRank = Hello.AssistantProfessor,
-                      },
-                    new Instructor(){
-                        id = 2,
-                        firstName = "Maricel",
-                        lastName = "Balais",
-                        isTenured = false,
-                        instructorDateHired = DateTime.Now,
-                        instructorRank = Hello.AssociateProfessor
-                      },
-                        new Instructor(){
-                        id = 3,
-                        firstName ="Jerralyn",
-                        lastName ="Padua",
-                        isTenured = true,
-                        instructorDateHired = DateTime.Now,
-                        instructorRank = Hello.AssociateProfessor
-                      },
-
-                };
 
   public IActionResult Index()
   {
-    return View(instructorsList);
+    return View(_dummyData.instructorsList);
   }
 
 
@@ -55,7 +27,7 @@ public class InstructorController : Controller
   {
 
 
-    Instructor? instructors = instructorsList.FirstOrDefault(t => t.id == id);
+    Instructor? instructors = _dummyData.instructorsList.FirstOrDefault(t => t.id == id);
 
     if (instructors != null)
     {
@@ -73,13 +45,13 @@ public class InstructorController : Controller
   [HttpPost]
   public IActionResult addinstructor(Instructor newinstructor)
   {
-    instructorsList.Add(newinstructor);
-    return View("Index", instructorsList);
+    _dummyData.instructorsList.Add(newinstructor);
+    return View("Index", _dummyData.instructorsList);
   }
   public IActionResult updateinstructor(int id)
   {
 
-    Instructor? student = instructorsList.FirstOrDefault(t => t.id == id);
+    Instructor? student = _dummyData.instructorsList.FirstOrDefault(t => t.id == id);
 
     if (student != null)
     {
@@ -90,7 +62,7 @@ public class InstructorController : Controller
   [HttpPost]
   public IActionResult updateinstructor(Instructor updateinstructor)
   {
-    Instructor? instructor = instructorsList.FirstOrDefault(t => t.id == updateinstructor.id);
+    Instructor? instructor = _dummyData.instructorsList.FirstOrDefault(t => t.id == updateinstructor.id);
 
     if (instructor != null)
     {
@@ -99,7 +71,31 @@ public class InstructorController : Controller
 
     };
 
-    return View("Index", instructorsList);
+    return View("Index", _dummyData.instructorsList);
+  }
+
+  [HttpGet]
+  public IActionResult deleteinstructor(int id)
+  {
+    Instructor? instructor = _dummyData.instructorsList.FirstOrDefault(t => t.id == id);
+
+
+    return View(instructor);
+
+
+  }
+
+  [HttpPost]
+  public IActionResult deleteinstructor(Instructor currentInstructor)
+  {
+    Instructor? instructor = _dummyData.instructorsList.FirstOrDefault(t => t.id == currentInstructor.id);
+
+    if (instructor != null)
+
+      _dummyData.instructorsList.Remove(instructor);
+
+
+    return View("Index", _dummyData.instructorsList);
   }
 
 }

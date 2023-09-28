@@ -10,91 +10,24 @@ namespace RembulatITELEC1C.Controllers;
 public class StudentController : Controller
 {
 
-    private readonly ILogger<StudentController> _logger;
 
-    public StudentController(ILogger<StudentController> logger)
+
+    private readonly DataInterfaceService _dummyData;
+
+    public StudentController(DataInterfaceService dummayData)
     {
-        _logger = logger;
+        _dummyData = dummayData;
     }
-
-    List<Student> StudentsList = new List<Student>() {
-                    new Student() {
-                        studentID= 1,
-                        studentName= "Joshua Rembulat",
-                        studentCourse = Course.BSIT,
-                        DateEndrolled = DateTime.Now,
-                        studentEmail = "joshua.rembulat.cics@ust.edu.ph"
-                    },
-
-                    new Student() {
-                        studentID= 2,
-                        studentName= "EJ Monteclaro",
-                        studentCourse = Course.BSIT,
-                        DateEndrolled = DateTime.Now,
-                        studentEmail = "elpidio.monteclaro.cics@ust.edu.ph"
-                    },
-
-                    new Student() {
-                        studentID= 3,
-                        studentName= "Leannard Ramos",
-                        studentCourse = Course.BSIT,
-                        DateEndrolled = DateTime.Now,
-                        studentEmail = "lennard.ramos.cics@ust.edu.ph"
-                    },
-                    new Student() {
-                        studentID= 4,
-                        studentName= "Phoebe Ngitngit",
-                        studentCourse = Course.BSIT,
-                        DateEndrolled = DateTime.Now,
-                        studentEmail = "alexisphoebe.ngitngi.cics@ust.edu.ph"
-                    },
-                    new Student() {
-                        studentID= 4,
-                        studentName= "Jasper Noel Llave",
-                        studentCourse = Course.BSIT,
-                        DateEndrolled = DateTime.Now,
-                        studentEmail = "jaspernodel.llave.cics@ust.edu.ph"
-                    },
-                    new Student() {
-                        studentID= 5,
-                        studentName= "Jean Stefanie Khaldyn Abarquez",
-                        studentCourse = Course.BSIT,
-                        DateEndrolled = DateTime.Now,
-                        studentEmail = "jeanstafanie.abarquez.cics@ust.edu.ph"
-                    },
-                     new Student() {
-                        studentID= 6,
-                        studentName= "Azzilhea Angel Samson",
-                        studentCourse = Course.BSIT,
-                        DateEndrolled = DateTime.Now,
-                        studentEmail = "azzilheaangel.samson.cics@ust.edu.ph"
-                    },
-                    new Student() {
-                        studentID= 7,
-                        studentName= "Antonio Criscencio Arrieta",
-                        studentCourse = Course.BSIT,
-                        DateEndrolled = DateTime.Now,
-                        studentEmail = "antoniocriscencio.arrieta.cics@ust.edu.ph"
-                    },
-                     new Student() {
-                        studentID= 8,
-                        studentName= "Micko Tee",
-                        studentCourse = Course.BSIT,
-                        DateEndrolled = DateTime.Now,
-                        studentEmail = "micko.tee.cics@ust.edu.ph"
-                    },
-
-                };
 
     public IActionResult Index()
     {
 
 
-        return View(StudentsList);
+        return View(_dummyData.StudentsList);
     }
     public IActionResult ShowDetails(int id)
     {
-        Student? student = StudentsList.FirstOrDefault(t => t.studentID == id);
+        Student? student = _dummyData.StudentsList.FirstOrDefault(t => t.studentID == id);
 
         if (student != null)
         {
@@ -111,13 +44,13 @@ public class StudentController : Controller
     public IActionResult addstudent(Student newstudent)
     {
 
-        StudentsList.Add(newstudent);
-        return View("Index", StudentsList);
+        _dummyData.StudentsList.Add(newstudent);
+        return RedirectToAction("index");
     }
     public IActionResult updatestudent(int id)
     {
 
-        Student? student = StudentsList.FirstOrDefault(t => t.studentID == id);
+        Student? student = _dummyData.StudentsList.FirstOrDefault(t => t.studentID == id);
 
         if (student != null)
         {
@@ -128,7 +61,7 @@ public class StudentController : Controller
     [HttpPost]
     public IActionResult updatestudent(Student updatestudent)
     {
-        Student? student = StudentsList.FirstOrDefault(t => t.studentID == updatestudent.studentID);
+        Student? student = _dummyData.StudentsList.FirstOrDefault(t => t.studentID == updatestudent.studentID);
 
         if (student != null)
         {
@@ -137,31 +70,29 @@ public class StudentController : Controller
             student.studentCourse = updatestudent.studentCourse;
         };
 
-        return View("Index", StudentsList);
+        return RedirectToAction("index");
     }
     [HttpGet]
-    public IActionResult deletestudent(int studentID)
+    public IActionResult deletestudent(int id)
     {
-        Student? student = StudentsList.FirstOrDefault(t => t.studentID == studentID);
+        Student? student = _dummyData.StudentsList.FirstOrDefault(t => t.studentID == id);
 
-        if (student != null)
-        {
-            return View(student);
-        }
-        return NotFound();
+
+        return View(student);
+
 
     }
 
     [HttpPost]
     public IActionResult deletestudent(Student currentStudent)
     {
-        Student? student = StudentsList.FirstOrDefault(t => t.studentID == currentStudent.studentID);
+        Student? student = _dummyData.StudentsList.FirstOrDefault(t => t.studentID == currentStudent.studentID);
 
         if (student != null)
 
-            StudentsList.Remove(student);
+            _dummyData.StudentsList.Remove(student);
 
 
-        return View("Index", StudentsList);
+        return RedirectToAction("index");
     }
 }
