@@ -5,30 +5,36 @@
 <h2>Update Student</h2>
 
 
-<form method="post" asp-action="updatestudent" asp-controller="Student" class='p-2 row gx-3 gy-2 align-items-center'>
+
+<div class="alert alert-danger" asp-validation-summary="All"></div>
+
+
+<form method="post" asp-action="updatestudent" asp-validation-summary="All" asp-controller="Student"
+    class='p-2 row gx-3 gy-2 align-items-center'>
     <div class="form-group">
         <label asp-for="studentID">Student ID</label>
         <input class="form-control" asp-for="studentID" />
     </div>
     <div class="form-group">
-        <label asp-for="studentName">Enter StudentName</label>
-        <input class="form-control" asp-for="studentName" />
+        <label asp-for="studentName"></label>
+        <input class="form-control" asp-validation-for="studentName" asp-for="studentName" />
     </div>
     <div class="form-group">
-        <label asp-for="studentEmail">Enter Email</label>
-        <input class="form-control" asp-for="studentEmail" />
+        <label asp-for="studentEmail"></label>
+        <input class="form-control" asp-validation-for="studentEmail" asp-for="studentEmail" />
     </div>
     <div class="form-group">
 
-        <label class="input-group-text" asp-for="studentCourse">Enter Course</label>
-        <select class="form-control" asp-items="@Html.GetEnumSelectList(typeof(Course))" asp-for="studentCourse">
-            
+        <label class="input-group-text" asp-for="studentCourse"></label>
+        <select class="form-control" asp-validation-for="studentCourse"
+            asp-items="@Html.GetEnumSelectList(typeof(Course))" asp-for="studentCourse">
+
         </select>
 
     </div>
     <div class=" form-group">
-        <label asp-for="DateEndrolled">Date Enrolled</label>
-        <input asp-for="DateEndrolled" class="form-control" />
+        <label asp-for="DateEndrolled"></label>
+        <input asp-for="DateEndrolled" asp-validation-for="DateEnrolled" class="form-control" />
     </div>
     <button type="button" onclick="history.back()" class="btn btn-secondary p-20">Cancel</button>
     <button type="submit" class="btn btn-primary p-20">Update</button>

@@ -1,4 +1,6 @@
-using RembulatITELEC1C;
+
+using database.service;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 
-builder.Services.AddSingleton<DataInterfaceService, DataService>();
+// builder.Services.AddSingleton<DataInterfaceService, DataService>();
+
+builder.Services.AddDbContext<Database>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection String")));
 
 var app = builder.Build();
 
@@ -20,10 +24,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<Database>();
+context.Database.EnsureCreated();
+
 app.UseRouting();
+app.UseDeveloperExceptionPage();
 
 app.UseAuthorization();
 

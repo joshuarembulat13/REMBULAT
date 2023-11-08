@@ -3,34 +3,32 @@
 
 <h2>Add Instructor</h2>
 
+<div class="alert alert-danger" asp-validation-summary="All"></div>
 
-<form method="post" asp-action="updateinstructor" asp-controller="Instructor" class='p-2 row gx-3 gy-2 align-items-center'>
+<form method="post" asp-action="updateinstructor" asp-controller="Instructor"
+    class='p-2 row gx-3 gy-2 align-items-center'>
     <div class="form-group">
-        <label asp-for="id">Instructor ID</label>
-        <input class="form-control" asp-for="id" />
-    </div>
-    <div class="form-group">
-        <label asp-for="firstName">Enter Firstname</label>
+        <label asp-for="firstName"></label>
         <input class="form-control" asp-for="firstName" />
     </div>
     <div class="form-group">
-        <label asp-for="lastName">Enter Email</label>
+        <label asp-for="lastName"></label>
         <input class="form-control" asp-for="lastName" />
     </div>
     <div class="form-group">
-        <label class="input-group-text" asp-for="isTenured">Instructor Tenured</label>
+        <label class="input-group-text" asp-for="isTenured"></label>
         <input class="form-check-input" asp-for="isTenured">
 
     </div>
     <div class="form-group">
-        <label class="input-group-text" asp-for="instructorRank">Instructor Rank</label>
+        <label class="input-group-text" asp-for="instructorRank"></label>
         <select class="form-control" asp-items="@Html.GetEnumSelectList(typeof(Hello))" asp-for="instructorRank">
 
         </select>
 
     </div>
     <div class=" form-group">
-        <label asp-for="instructorDateHired">Date Enrolled</label>
+        <label asp-for="instructorDateHired"></label>
         <input asp-for="instructorDateHired" class="form-control" />
     </div>
 

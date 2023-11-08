@@ -1,6 +1,5 @@
-using System.Diagnostics;
+using database.service;
 using Microsoft.AspNetCore.Mvc;
-using RembulatITELEC1C.Models;
 
 
 namespace RembulatITELEC1C.Controllers;
@@ -10,16 +9,16 @@ namespace RembulatITELEC1C.Controllers;
 public class InstructorController : Controller
 {
 
-  private readonly DataInterfaceService _dummyData;
+  private readonly Database mssql;
 
-  public InstructorController(DataInterfaceService dummayData)
+  public InstructorController(Database dummayData)
   {
-    _dummyData = dummayData;
+    mssql = dummayData;
   }
 
   public IActionResult Index()
   {
-    return View(_dummyData.instructorsList);
+    return View(mssql.Instructors);
   }
 
 
@@ -27,7 +26,7 @@ public class InstructorController : Controller
   {
 
 
-    Instructor? instructors = _dummyData.instructorsList.FirstOrDefault(t => t.id == id);
+    Instructor? instructors = mssql.Instructors.FirstOrDefault(t => t.id == id);
 
     if (instructors != null)
     {
@@ -45,13 +44,19 @@ public class InstructorController : Controller
   [HttpPost]
   public IActionResult addinstructor(Instructor newinstructor)
   {
-    _dummyData.instructorsList.Add(newinstructor);
-    return View("Index", _dummyData.instructorsList);
+
+    if (!ModelState.IsValid)
+    {
+      return View();
+    }
+    mssql.Instructors.Add(newinstructor);
+    mssql.SaveChanges();
+    return View("Index", mssql.Instructors);
   }
   public IActionResult updateinstructor(int id)
   {
 
-    Instructor? student = _dummyData.instructorsList.FirstOrDefault(t => t.id == id);
+    Instructor? student = mssql.Instructors.FirstOrDefault(t => t.id == id);
 
     if (student != null)
     {
@@ -62,22 +67,30 @@ public class InstructorController : Controller
   [HttpPost]
   public IActionResult updateinstructor(Instructor updateinstructor)
   {
-    Instructor? instructor = _dummyData.instructorsList.FirstOrDefault(t => t.id == updateinstructor.id);
+    Instructor? instructor = mssql.Instructors.FirstOrDefault(t => t.id == updateinstructor.id);
+
+
 
     if (instructor != null)
     {
+
+      if (!ModelState.IsValid)
+      {
+        return View();
+      }
       instructor.firstName = updateinstructor.firstName;
       instructor.lastName = updateinstructor.lastName;
+      mssql.SaveChanges();
 
     };
 
-    return View("Index", _dummyData.instructorsList);
+    return View("Index", mssql.Instructors);
   }
 
   [HttpGet]
   public IActionResult deleteinstructor(int id)
   {
-    Instructor? instructor = _dummyData.instructorsList.FirstOrDefault(t => t.id == id);
+    Instructor? instructor = mssql.Instructors.FirstOrDefault(t => t.id == id);
 
 
     return View(instructor);
@@ -88,14 +101,14 @@ public class InstructorController : Controller
   [HttpPost]
   public IActionResult deleteinstructor(Instructor currentInstructor)
   {
-    Instructor? instructor = _dummyData.instructorsList.FirstOrDefault(t => t.id == currentInstructor.id);
+    Instructor? instructor = mssql.Instructors.FirstOrDefault(t => t.id == currentInstructor.id);
 
     if (instructor != null)
 
-      _dummyData.instructorsList.Remove(instructor);
+      mssql.Instructors.Remove(instructor);
+    mssql.SaveChanges();
 
-
-    return View("Index", _dummyData.instructorsList);
+    return View("Index", mssql.Instructors);
   }
 
 }

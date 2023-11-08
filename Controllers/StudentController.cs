@@ -1,5 +1,7 @@
 using System.Diagnostics;
+using database.service;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using RembulatITELEC1C.Models;
 
 
@@ -12,22 +14,22 @@ public class StudentController : Controller
 
 
 
-    private readonly DataInterfaceService _dummyData;
+    private readonly Database mssql;
 
-    public StudentController(DataInterfaceService dummayData)
+    public StudentController(Database dummayData)
     {
-        _dummyData = dummayData;
+        mssql = dummayData;
     }
 
     public IActionResult Index()
     {
 
 
-        return View(_dummyData.StudentsList);
+        return View(mssql.Students);
     }
     public IActionResult ShowDetails(int id)
     {
-        Student? student = _dummyData.StudentsList.FirstOrDefault(t => t.studentID == id);
+        Student? student = mssql.Students.FirstOrDefault(t => t.studentID == id);
 
         if (student != null)
         {
@@ -44,13 +46,19 @@ public class StudentController : Controller
     public IActionResult addstudent(Student newstudent)
     {
 
-        _dummyData.StudentsList.Add(newstudent);
+        if (!ModelState.IsValid)
+        {
+            return View();
+        }
+        mssql.Students.Add(newstudent);
+        mssql.SaveChanges();
         return RedirectToAction("index");
     }
     public IActionResult updatestudent(int id)
     {
 
-        Student? student = _dummyData.StudentsList.FirstOrDefault(t => t.studentID == id);
+        Student? student = mssql.Students.FirstOrDefault(t => t.studentID == id);
+
 
         if (student != null)
         {
@@ -61,13 +69,20 @@ public class StudentController : Controller
     [HttpPost]
     public IActionResult updatestudent(Student updatestudent)
     {
-        Student? student = _dummyData.StudentsList.FirstOrDefault(t => t.studentID == updatestudent.studentID);
+        Student? student = mssql.Students.FirstOrDefault(t => t.studentID == updatestudent.studentID);
 
+
+        if (!ModelState.IsValid)
+        {
+            return View();
+        }
         if (student != null)
         {
             student.studentName = updatestudent.studentName;
             student.studentEmail = updatestudent.studentEmail;
             student.studentCourse = updatestudent.studentCourse;
+            student.DateEndrolled = updatestudent.DateEndrolled;
+            mssql.SaveChanges();
         };
 
         return RedirectToAction("index");
@@ -75,7 +90,7 @@ public class StudentController : Controller
     [HttpGet]
     public IActionResult deletestudent(int id)
     {
-        Student? student = _dummyData.StudentsList.FirstOrDefault(t => t.studentID == id);
+        Student? student = mssql.Students.FirstOrDefault(t => t.studentID == id);
 
 
         return View(student);
@@ -86,11 +101,12 @@ public class StudentController : Controller
     [HttpPost]
     public IActionResult deletestudent(Student currentStudent)
     {
-        Student? student = _dummyData.StudentsList.FirstOrDefault(t => t.studentID == currentStudent.studentID);
+        Student? student = mssql.Students.FirstOrDefault(t => t.studentID == currentStudent.studentID);
 
         if (student != null)
 
-            _dummyData.StudentsList.Remove(student);
+            mssql.Students.Remove(student);
+        mssql.SaveChanges();
 
 
         return RedirectToAction("index");
