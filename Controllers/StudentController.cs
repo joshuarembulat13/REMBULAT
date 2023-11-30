@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using database.service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using RembulatITELEC1C.Models;
@@ -20,7 +21,7 @@ public class StudentController : Controller
     {
         mssql = dummayData;
     }
-
+    [Authorize]
     public IActionResult Index()
     {
 

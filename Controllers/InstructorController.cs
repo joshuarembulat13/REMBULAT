@@ -1,4 +1,5 @@
 using database.service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -15,7 +16,7 @@ public class InstructorController : Controller
   {
     mssql = dummayData;
   }
-
+  [Authorize]
   public IActionResult Index()
   {
     return View(mssql.Instructors);
